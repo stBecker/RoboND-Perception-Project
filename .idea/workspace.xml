@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="a285ab09-8812-40e0-98ff-7d3e33529417" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../RoboND-Perception-Exercises/.idea/RoboND-Perception-Exercises.iml" afterPath="$PROJECT_DIR$/../RoboND-Perception-Exercises/.idea/RoboND-Perception-Exercises.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pr2_robot/scripts/project_template.py" afterPath="$PROJECT_DIR$/pr2_robot/scripts/project_template.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -14,14 +13,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="project_template.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="project_template.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pr2_robot/scripts/project_template.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="747">
-              <caret line="278" column="8" lean-forward="true" selection-start-line="278" selection-start-column="8" selection-end-line="278" selection-end-column="8" />
+            <state relative-caret-position="369">
+              <caret line="260" column="46" lean-forward="true" selection-start-line="260" selection-start-column="46" selection-end-line="260" selection-end-column="46" />
               <folding>
                 <element signature="e#40#58#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="train_svm.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/pr2_robot/scripts/train_svm.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="320">
+              <caret line="23" column="40" lean-forward="true" selection-start-line="23" selection-start-column="40" selection-end-line="23" selection-end-column="40" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -55,8 +64,8 @@
         <entry file="file://$PROJECT_DIR$/writeup.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="-419">
-                <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <first_editor relative-caret-position="241">
+                <caret line="23" column="18" lean-forward="false" selection-start-line="23" selection-start-column="18" selection-end-line="23" selection-end-column="18" />
                 <folding />
               </first_editor>
               <second_editor>
@@ -108,16 +117,6 @@
       </file>
       <file leaf-file-name="pick_list_challenge.yaml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pr2_robot/config/pick_list_challenge.yaml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="demo.world" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pr2_robot/worlds/demo.world">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -185,7 +184,41 @@
               <item name="RoboND-Perception-Project" type="b2602c69:ProjectViewProjectNode" />
               <item name="RoboND-Perception-Project" type="462c0819:PsiDirectoryNode" />
               <item name="pr2_robot" type="462c0819:PsiDirectoryNode" />
+              <item name="scripts" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="RoboND-Perception-Project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RoboND-Perception-Project" type="462c0819:PsiDirectoryNode" />
+              <item name="pr2_robot" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="RoboND-Perception-Project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RoboND-Perception-Project" type="462c0819:PsiDirectoryNode" />
+              <item name="pr2_robot" type="462c0819:PsiDirectoryNode" />
               <item name="srv" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="RoboND-Perception-Project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RoboND-Perception-Exercises" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="RoboND-Perception-Project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RoboND-Perception-Exercises" type="462c0819:PsiDirectoryNode" />
+              <item name="Exercise-3" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="RoboND-Perception-Project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RoboND-Perception-Exercises" type="462c0819:PsiDirectoryNode" />
+              <item name="Exercise-3" type="462c0819:PsiDirectoryNode" />
+              <item name="sensor_stick" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="RoboND-Perception-Project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RoboND-Perception-Exercises" type="462c0819:PsiDirectoryNode" />
+              <item name="Exercise-3" type="462c0819:PsiDirectoryNode" />
+              <item name="sensor_stick" type="462c0819:PsiDirectoryNode" />
+              <item name="scripts" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -201,9 +234,9 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\sb\Dropbox\robotics\RoboND-Perception-Project\pr2_robot\scripts" />
       <recent name="C:\Users\sb\Dropbox\robotics\RoboND-Perception-Project" />
       <recent name="C:\Users\sb\Dropbox\robotics\RoboND-Perception-Project\pr2_robot\config" />
-      <recent name="C:\Users\sb\Dropbox\robotics\RoboND-Perception-Project\pr2_robot\scripts" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -449,19 +482,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/writeup.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="-419">
-            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-            <folding />
-          </first_editor>
-          <second_editor>
-            <js_state />
-          </second_editor>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pr2_robot/srv/PickPlace.srv">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -470,13 +490,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/writeup.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="241">
+            <caret line="23" column="18" lean-forward="false" selection-start-line="23" selection-start-column="18" selection-end-line="23" selection-end-column="18" />
+            <folding />
+          </first_editor>
+          <second_editor>
+            <js_state />
+          </second_editor>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/pr2_robot/scripts/project_template.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="747">
-          <caret line="278" column="8" lean-forward="true" selection-start-line="278" selection-start-column="8" selection-end-line="278" selection-end-column="8" />
+        <state relative-caret-position="369">
+          <caret line="260" column="46" lean-forward="true" selection-start-line="260" selection-start-column="46" selection-end-line="260" selection-end-column="46" />
           <folding>
             <element signature="e#40#58#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pr2_robot/scripts/train_svm.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="23" column="40" lean-forward="true" selection-start-line="23" selection-start-column="40" selection-end-line="23" selection-end-column="40" />
+          <folding />
         </state>
       </provider>
     </entry>
