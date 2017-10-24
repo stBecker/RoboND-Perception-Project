@@ -30,15 +30,17 @@ def get_normals(cloud):
     get_normals_prox = rospy.ServiceProxy('/feature_extractor/get_normals', GetNormals)
     return get_normals_prox(cloud).cluster
 
+
 # Helper function to create a yaml friendly dictionary from ROS messages
 def make_yaml_dict(test_scene_num, arm_name, object_name, pick_pose, place_pose):
     yaml_dict = {}
     yaml_dict["test_scene_num"] = test_scene_num.data
-    yaml_dict["arm_name"]  = arm_name.data
+    yaml_dict["arm_name"] = arm_name.data
     yaml_dict["object_name"] = object_name.data
     yaml_dict["pick_pose"] = message_converter.convert_ros_message_to_dictionary(pick_pose)
     yaml_dict["place_pose"] = message_converter.convert_ros_message_to_dictionary(place_pose)
     return yaml_dict
+
 
 # Helper function to output to yaml file
 def send_to_yaml(yaml_filename, dict_list):
@@ -46,13 +48,13 @@ def send_to_yaml(yaml_filename, dict_list):
     with open(yaml_filename, 'w') as outfile:
         yaml.dump(data_dict, outfile, default_flow_style=False)
 
+
 # Callback function for your Point Cloud Subscriber
 def pcl_callback(pcl_msg):
-
-# Exercise-2 TODOs:
+    # Exercise-2 TODOs:
 
     # TODO: Convert ROS msg to PCL data
-    
+
     # TODO: Statistical Outlier Filtering
 
     # TODO: Voxel Grid Downsampling
@@ -71,19 +73,19 @@ def pcl_callback(pcl_msg):
 
     # TODO: Publish ROS messages
 
-# Exercise-3 TODOs:
+    # Exercise-3 TODOs:
 
     # Classify the clusters! (loop through each detected cluster one at a time)
 
-        # Grab the points for the cluster
+    # Grab the points for the cluster
 
-        # Compute the associated feature vector
+    # Compute the associated feature vector
 
-        # Make the prediction
+    # Make the prediction
 
-        # Publish a label into RViz
+    # Publish a label into RViz
 
-        # Add the detected object to the list of detected objects.
+    # Add the detected object to the list of detected objects.
 
     # Publish the list of detected objects
 
@@ -95,9 +97,9 @@ def pcl_callback(pcl_msg):
     except rospy.ROSInterruptException:
         pass
 
+
 # function to load parameters and request PickPlace service
 def pr2_mover(object_list):
-
     # TODO: Initialize variables
 
     # TODO: Get/Read parameters
@@ -108,43 +110,56 @@ def pr2_mover(object_list):
 
     # TODO: Loop through the pick list
 
-        # TODO: Get the PointCloud for a given object and obtain it's centroid
+    # TODO: Get the PointCloud for a given object and obtain it's centroid
 
-        # TODO: Create 'place_pose' for the object
+    # TODO: Create 'place_pose' for the object
 
-        # TODO: Assign the arm to be used for pick_place
+    # TODO: Assign the arm to be used for pick_place
 
-        # TODO: Create a list of dictionaries (made with make_yaml_dict()) for later output to yaml format
+    # TODO: Create a list of dictionaries (made with make_yaml_dict()) for later output to yaml format
 
-        # Wait for 'pick_place_routine' service to come up
-        rospy.wait_for_service('pick_place_routine')
+    # Wait for 'pick_place_routine' service to come up
+    rospy.wait_for_service('pick_place_routine')
 
-        try:
-            pick_place_routine = rospy.ServiceProxy('pick_place_routine', PickPlace)
+    try:
+        pick_place_routine = rospy.ServiceProxy('pick_place_routine', PickPlace)
 
-            # TODO: Insert your message variables to be sent as a service request
-            resp = pick_place_routine(TEST_SCENE_NUM, OBJECT_NAME, WHICH_ARM, PICK_POSE, PLACE_POSE)
+        # TODO: Insert your message variables to be sent as a service request
+        resp = pick_place_routine(TEST_SCENE_NUM, OBJECT_NAME, WHICH_ARM, PICK_POSE, PLACE_POSE)
 
-            print ("Response: ",resp.success)
+        print ("Response: ", resp.success)
 
-        except rospy.ServiceException, e:
-            print "Service call failed: %s"%e
+    except rospy.ServiceException, e:
+        print "Service call failed: %s" % e
 
-    # TODO: Output your request parameters into output yaml file
-
+        # TODO: Output your request parameters into output yaml file
 
 
 if __name__ == '__main__':
 
     # TODO: ROS node initialization
+    rospy.init_node('clustering', anonymous=True)
 
     # TODO: Create Subscribers
+    pcl_sub = rospy.Subscriber("/pr2/world/points", PointCloud2, pcl_callback, queue_size=1)
 
     # TODO: Create Publishers
+    pcl_objects_pub = rospy.Publisher("/pcl_objects", PointCloud2, queue_size=1)
+    pcl_table_pub = rospy.Publisher("/pcl_table", PointCloud2, queue_size=1)
+    pcl_cluster_pub = rospy.Publisher("/pcl_cluster", PointCloud2, queue_size=1)
+    object_markers_pub = rospy.Publisher("/object_markers", Marker, queue_size=1)
+    detected_objects_pub = rospy.Publisher("/detected_objects", DetectedObjectsArray, queue_size=1)
 
-    # TODO: Load Model From disk
+    # Load Model From disk
+    model = pickle.load(open('model.sav', 'rb'))
+    clf = model['classifier']
+    encoder = LabelEncoder()
+    encoder.classes_ = model['classes']
+    scaler = model['scaler']
 
     # Initialize color_list
     get_color_list.color_list = []
 
     # TODO: Spin while node is not shutdown
+    while not rospy.is_shutdown():
+        rospy.spin()
