@@ -3,6 +3,25 @@
 
 ---
 
+[//]: # (Image References)
+
+[labels]: ./writeup/labels_1.PNG
+[cluster]: ./writeup/pcl_cluster.PNG
+[objects]: ./writeup/pcl_objects.PNG
+[table]: ./writeup/pcl_table.PNG
+[image1]: ./writeup/labels_1.PNG
+[conf1]: ./writeup/confusion_1.PNG
+[conf2]: ./writeup/confusion_2.PNG
+[conf3]: ./writeup/confusion_3.PNG
+[world1]: ./writeup/world1.PNG
+[world1_2]: ./writeup/world1_2.PNG
+[world2]: ./writeup/world2.PNG
+[world2_2]: ./writeup/world2_2.PNG
+[world2_3]: ./writeup/world2_3.PNG
+[world3]: ./writeup/world3.PNG
+[world3_2]: ./writeup/world3_2.PNG
+
+
 
 # Required Steps for a Passing Submission:
 1. Extract features and train an SVM model on new objects (see `pick_list_*.yaml` in `/pr2_robot/config/` for the list of models you'll be trying to identify). 
@@ -37,21 +56,71 @@ You're reading it!
 ### Exercise 1, 2 and 3 pipeline implemented
 #### 1. Complete Exercise 1 steps. Pipeline for filtering and RANSAC plane fitting implemented.
 
-#### 2. Complete Exercise 2 steps: Pipeline including clustering for segmentation implemented.  
+The pipeline consists of the following steps:
+1. Voxel Grid Downsampling
+2. Statistical Outlier Filtering
+3. PassThrough Filter for z and y axis
+4. RANSAC Plane Segmentation
+5. Another round of Statistical Outlier Filtering
 
-#### 2. Complete Exercise 3 Steps.  Features extracted and SVM trained.  Object recognition implemented.
-Here is an example of how to include an image in your writeup.
+![alt text][table]
 
-![demo-1](https://user-images.githubusercontent.com/20687560/28748231-46b5b912-7467-11e7-8778-3095172b7b19.png)
+
+![alt text][objects]
+
+#### 2. Complete Exercise 2 steps: Pipeline including clustering for segmentation implemented. 
+
+The clustering pipeline consists of the following steps:
+1. Euclidean Clustering
+2. Create Cluster-Mask Point Cloud
+
+![alt text][cluster]
+
+
+#### 3. Complete Exercise 3 Steps.  Features extracted and SVM trained.  Object recognition implemented.
+
+For the color and normals histograms I used 64 bins for each channel, so 6*64 or 384 features.
+The linear SVM kernel was fittet with training data from 200 observation of each object, 
+for each collection of objects seperately.
+
+![alt text][labels]
+
 
 ### Pick and Place Setup
 
 #### 1. For all three tabletop setups (`test*.world`), perform object recognition, then read in respective pick list (`pick_list_*.yaml`). Next construct the messages that would comprise a valid `PickPlace` request output them to `.yaml` format.
 
-And here's another image! 
-![demo-2](https://user-images.githubusercontent.com/20687560/28748286-9f65680e-7468-11e7-83dc-f1a32380b89c.png)
+##### Confusion matrices for the 3 worlds after 200 training images for each object
 
-Spend some time at the end to discuss your code, what techniques you used, what worked and why, where the implementation might fail and how you might improve it if you were going to pursue this project further.  
+![alt text][conf1]
 
+![alt text][conf2]
+
+![alt text][conf3]
+
+
+##### Running the whole pipeline, including collision detection of the table and calling the pick_place_routine
+
+
+![alt text][world1]
+
+![alt text][world1_2]
+
+![alt text][world2]
+
+![alt text][world2_2]
+
+![alt text][world2_3]
+
+![alt text][world3]
+
+![alt text][world3_2]
+
+
+At first I ran into problems with the object detection accuracy, when I only used 25 observations per object for the classifier training.
+I tried several different values for the number of captured features and finally arrived at 200 observations per object, 
+which gave satisfactory results.
+
+Currently the collision detection only captures the table; as a future improvement I should also add the remaining objects as collision objects.
 
 
