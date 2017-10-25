@@ -8,6 +8,9 @@ from sklearn.preprocessing import LabelEncoder, StandardScaler
 from sklearn import cross_validation
 from sklearn import metrics
 
+
+TEST_SCENE_NUM = 1
+
 def plot_confusion_matrix(cm, classes,
                           normalize=False,
                           title='Confusion matrix',
@@ -36,7 +39,7 @@ def plot_confusion_matrix(cm, classes,
     plt.xlabel('Predicted label')
 
 # Load training data from disk
-training_set = pickle.load(open('training_set.sav', 'rb'))
+training_set = pickle.load(open('training_set_%s.sav' % TEST_SCENE_NUM, 'rb'))
 
 # Format the features and labels for use with scikit learn
 feature_list = []
@@ -56,14 +59,18 @@ X_scaler = StandardScaler().fit(X)
 # Apply the scaler to X
 X_train = X_scaler.transform(X)
 y_train = np.array(label_list)
+print(X_train.shape)
+print(X_scaler.mean_.shape)
 
 # Convert label strings to numerical encoding
 encoder = LabelEncoder()
 y_train = encoder.fit_transform(y_train)
 
 # Create classifier
-# clf = svm.SVC(kernel='linear')
-clf = svm.SVC(kernel='rbf')
+clf = svm.SVC(kernel='linear')
+# clf = svm.SVC(kernel='poly', degree=5)
+# clf = svm.SVC(kernel='sigmoid')
+# clf = svm.SVC(kernel='rbf')
 
 # Set up 5-fold cross-validation
 kf = cross_validation.KFold(len(X_train),
@@ -102,7 +109,7 @@ clf.fit(X=X_train, y=y_train)
 model = {'classifier': clf, 'classes': encoder.classes_, 'scaler': X_scaler}
 
 # Save classifier to disk
-pickle.dump(model, open('model.sav', 'wb'))
+pickle.dump(model, open('model_%s.sav' % TEST_SCENE_NUM, 'wb'))
 
 # Plot non-normalized confusion matrix
 plt.figure()

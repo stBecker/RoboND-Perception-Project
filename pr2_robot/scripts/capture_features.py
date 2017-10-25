@@ -19,15 +19,38 @@ def get_normals(cloud):
     get_normals_prox = rospy.ServiceProxy('/feature_extractor/get_normals', GetNormals)
     return get_normals_prox(cloud).cluster
 
+TEST_SCENE_NUM = 4
+
 
 if __name__ == '__main__':
     rospy.init_node('capture_node')
 
-    models = [
-       'biscuits',
-       'soap',
-       'soap2',
-    ]
+    # models = [
+    #    'biscuits',
+    #    'soap',
+    #    'soap2',
+    # ]
+
+    # models = [
+    #    'biscuits',
+    #    'soap',
+    #    'book',
+    #    'soap2',
+    #    'glue',
+    # ]
+
+    # models = [
+    #    'sticky_notes',
+    #    'book',
+    #    'snacks',
+    #    'biscuits',
+    #    'eraser',
+    #    'soap2',
+    #    'soap',
+    #    'glue',
+    # ]
+
+
 
     # Disable gravity and delete the ground plane
     initial_setup()
@@ -36,7 +59,7 @@ if __name__ == '__main__':
     for model_name in models:
         spawn_model(model_name)
 
-        for i in range(5):
+        for i in range(200):
             # make five attempts to get a valid a point cloud then give up
             sample_was_good = False
             try_count = 0
@@ -61,5 +84,5 @@ if __name__ == '__main__':
         delete_model()
 
 
-    pickle.dump(labeled_features, open('training_set.sav', 'wb'))
+    pickle.dump(labeled_features, open('training_set_%s.sav' % TEST_SCENE_NUM, 'wb'))
 
